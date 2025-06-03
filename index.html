@@ -88,6 +88,55 @@
       .contact-info a:hover {
         text-decoration: underline;
       }
+      .contact-section {
+        background: linear-gradient(to right, #e0f7fa, #f1f8e9);
+        padding: 4rem 1rem;
+      }
+
+      .contact-card {
+        background: #ffffff;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        max-width: 600px;
+        margin: auto;
+      }
+
+      .contact-card p {
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+      }
+
+      .contact-links a {
+        color: #2c5364;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .contact-links a:hover {
+        text-decoration: underline;
+      }
+
+      .contact-icons {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+      }
+
+      .contact-icons a img {
+        width: 50px;
+        height: 50px;
+        transition: transform 0.3s ease, filter 0.3s ease;
+      }
+
+      .contact-icons a:hover img {
+        transform: scale(1.2);
+        filter: brightness(1.3);
+      }
+
       .content-row {
         display: flex;
         align-items: center;
@@ -193,7 +242,7 @@
   </head>
   <body>
     <header>
-      <img src="durjoy.png" alt="Durjoy Majumder" />
+      <img src="durjoy.jpg" alt="Durjoy Majumder" />
       <h1>Durjoy Majumder</h1>
       <p>Data Analyst • ML Enthusiast • Developer</p>
       <a href="Durjoy-CV.pdf" class="cv-button" download>Download CV</a>
@@ -202,11 +251,25 @@
     <section>
       <h2>About Me</h2>
       <div class="content-row">
-        <img src="mf-avatar.svg" alt="About Me" />
+        <img src="1703064250382.jpg" alt="About Me" style="height: 400px" />
         <p>
-          I am a passionate final year CSE student from Bangladesh, working on
-          AI, data analysis, and full stack projects. I enjoy solving real-world
-          problems and love learning new technologies.
+          <b>👨‍💻 Professional Background:</b> I’m Durjoy Majumder, a Computer Science
+          and Engineering graduate with a strong focus on data analytics,
+          machine learning, and intelligent systems. Over the past few years,
+          I’ve developed expertise in tools like Python, Pandas, NumPy,
+          scikit-learn, MySQL, and TensorFlow. I’ve worked on real-world
+          classification problems, built dashboards using Power BI, and
+          developed responsive websites using HTML, CSS, JavaScript, and PHP.
+          I’m passionate about turning raw data into meaningful insights and
+          love building efficient, scalable solutions with modern tech. <br>🌱
+          <b>Personal Side:</b> Beyond the screen, I’m an explorer at heart. I enjoy
+          reading about emerging technologies, watching documentaries, and
+          diving deep into how things work. I find joy in small things—sharing
+          laughter with friends, walking alone in nature, or getting lost in
+          music. I'm someone who values curiosity, honesty, and human
+          connection. While I take my career seriously, I also believe that
+          being kind, calm, and emotionally aware is just as important as being
+          technically skilled.
         </p>
       </div>
     </section>
@@ -217,14 +280,12 @@
         <ul>
           <li>
             <strong>BSc in Computer Science & Engineering</strong><br />Green
-            University of Bangladesh<br />2020 - 2025 (Expected)
+            University of Bangladesh<br />2020 - 2025
           </li>
-        </ul>
-        <img src="2023-05-07.webp" alt="Education" />
-        <ul>
+
           <li>
-            <strong>BSc in Computer Science & Engineering</strong><br />Green
-            University of Bangladesh<br />2020 - 2025 (Expected)
+            <strong>Higher Secondary School</strong><br />Noakhali Science And
+            Commerce College <br />Science<br />2017 - 2018
           </li>
         </ul>
       </div>
@@ -234,24 +295,15 @@
       <h2>Hobbies</h2>
       <div class="skills-logos hobbies-logos">
         <div class="skill-box">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png"
-            alt="Tech"
-          />
+          <img src="tech.png" alt="Tech" />
           <div>Exploring Tech</div>
         </div>
         <div class="skill-box">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/616/616408.png"
-            alt="Football"
-          />
+          <img src="football.avif" alt="Football" />
           <div>Football</div>
         </div>
         <div class="skill-box">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/2965/2965567.png"
-            alt="Gaming"
-          />
+          <img src="game.webp" alt="Gaming" />
           <div>Gaming</div>
         </div>
         <div class="skill-box">
@@ -266,42 +318,41 @@
 
     <section>
       <h2>Projects</h2>
+
       <div class="project">
-        <img
-          src="https://via.placeholder.com/400x250?text=Project+1"
-          alt="Project 1"
-        />
+        <img src="lung.jpg" alt="Project 2" />
         <div>
-          <h3>Bus Booking System</h3>
-          <p>
-            A daily return bus booking platform with real-time slot graphs and
-            location filter. Built using PHP, MySQL, and Chart.js.
-          </p>
-        </div>
-      </div>
-      <div class="project">
-        <img
-          src="https://via.placeholder.com/400x250?text=Project+2"
-          alt="Project 2"
-        />
-        <div>
-          <h3>Lung Cancer Classification</h3>
+          <a
+            href="https://github.com/Code-with-Durjoy/Lung-Cancer-Classification"
+            ><h3>Lung Cancer Classification</h3></a
+          >
           <p>
             ML project using CNN, ResNet, and EfficientNet on histopathological
             images. Focused on classifying lung cancer subtypes.
           </p>
         </div>
       </div>
+
       <div class="project">
-        <img
-          src="https://via.placeholder.com/400x250?text=Project+3"
-          alt="Project 3"
-        />
+        <img src="news.png" alt="Project 1" />
         <div>
-          <h3>Lost & Found System</h3>
+          <h3>News Article Summarization</h3>
           <p>
-            Web platform for reporting and tracking lost items, integrated with
-            admin remarks and image uploads.
+            Developed an NLP-based tool to generate concise summaries of long
+            news articles using Python and transformer models. Integrated both
+            extractive and abstractive techniques to improve readability and
+            preserve key information.
+          </p>
+        </div>
+      </div>
+
+      <div class="project">
+        <img src="gub.jpg" alt="Project 1" />
+        <div>
+          <h3>Bus Booking System</h3>
+          <p>
+            A daily return bus booking platform with real-time slot graphs and
+            location filter. Built using PHP, MySQL, and Chart.js.
           </p>
         </div>
       </div>
@@ -351,10 +402,7 @@
           <div>SQL</div>
         </div>
         <div class="skill-box">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/c/c8/Microsoft_Power_BI_Logo.svg"
-            alt="Power BI"
-          />
+          <img src="powerbi.png" alt="Power BI" />
           <div>Power BI</div>
         </div>
         <div class="skill-box">
@@ -397,32 +445,52 @@
             src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg"
             alt="Flutter"
           />
-          <div>Flutter</div>
+          <div>Flutter(Biginner)</div>
         </div>
       </div>
     </section>
 
-    <section id="contact">
-      <h2>Contact Me</h2>
-      <div class="contact-info">
-        <p>
-          <strong>Email:</strong>
-          <a href="mailto:your.email@example.com">your.email@example.com</a>
-        </p>
-        <p><strong>Phone:</strong> +880 1234 567890</p>
-        <p><strong>Location:</strong> Dhaka, Bangladesh</p>
-        <p>
-          <strong>GitHub:</strong>
-          <a href="https://github.com/yourusername" target="_blank"
-            >github.com/yourusername</a
+    <section class="contact-section">
+      <h2>Contact</h2>
+      <div class="contact-card">
+        <p>You can reach me via:</p>
+
+        <div class="contact-links">
+          <p>
+            <strong>Email:</strong>
+            <a href="mailto:durjoymajumder070@gmail.com"
+              >durjoymajumder070@gmail.com</a
+            >
+          </p>
+          <p>
+            <strong>Phone:</strong>
+            <a href="tel:+8801XXXXXXXXX">+8801831748496</a>
+          </p>
+        </div>
+
+        <p style="margin: 1.5rem 0 0.5rem">Or connect with me:</p>
+        <div class="contact-icons">
+          <a
+            href="https://github.com/Code-with-Durjoy"
+            target="_blank"
+            title="GitHub"
           >
-        </p>
-        <p>
-          <strong>LinkedIn:</strong>
-          <a href="https://linkedin.com/in/yourusername" target="_blank"
-            >linkedin.com/in/yourusername</a
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/733/733553.png"
+              alt="GitHub"
+            />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/durjoy-ai07"
+            target="_blank"
+            title="LinkedIn"
           >
-        </p>
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
+              alt="LinkedIn"
+            />
+          </a>
+        </div>
       </div>
     </section>
 
