@@ -53,6 +53,42 @@
       .cv-button:hover {
         background-color: #e0e0e0;
       }
+      .about-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.about-text {
+  flex: 1 1 300px;
+}
+
+.about-image {
+  flex: 1 1 250px;
+  max-width: 300px;
+}
+
+.about-image img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+}
+
+/* Responsive fix for small screens */
+@media (max-width: 768px) {
+  .about-box {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .about-text, .about-image {
+    flex: 1 1 100%;
+  }
+}
+
 
       #contact {
         padding: 4rem 1rem;
@@ -242,18 +278,19 @@
   </head>
   <body>
     <header>
-      <img src="durjoy.png" alt="Durjoy Majumder" />
+      <img src="durjoy.jpg" alt="Durjoy Majumder" />
       <h1>Durjoy Majumder</h1>
       <p>Data Analyst • ML Enthusiast • Developer</p>
       <a href="Durjoy-CV.pdf" class="cv-button" download>Download CV</a>
     </header>
 
-    <section>
-      <h2>About Me</h2>
-      <div class="content-row">
-        <img src="1703064250382.jpg" alt="About Me" style="height: 400px" />
-        <p>
-          <b>👨‍💻 Professional Background:</b> I’m Durjoy Majumder, a Computer Science
+    
+    <section class="about-section">
+  <h2>About Me</h2>
+  <div class="about-box">
+    <div class="about-text">
+      
+      <p>👨‍💻 Professional Background:</b> I’m Durjoy Majumder, a Computer Science
           and Engineering graduate with a strong focus on data analytics,
           machine learning, and intelligent systems. Over the past few years,
           I’ve developed expertise in tools like Python, Pandas, NumPy,
@@ -269,10 +306,16 @@
           music. I'm someone who values curiosity, honesty, and human
           connection. While I take my career seriously, I also believe that
           being kind, calm, and emotionally aware is just as important as being
-          technically skilled.
-        </p>
-      </div>
-    </section>
+          technically skilled.</p>
+    </div>
+    <div class="about-image">
+      <img src="1703064250382.jpg" alt="Durjoy Majumder"style='height: 300px;'>
+    </div>
+  </div>
+</section>
+
+
+
     <section>
       <h2>Education</h2>
       <div class="content-row">
