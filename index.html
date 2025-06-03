@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Durjoy Majumder | Portfolio</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+        transition: background-color 0.3s, color 0.3s;
+      }
+      header {
+        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+        color: white;
+        padding: 4rem 1rem;
+        text-align: center;
+        transition: background 0.5s ease;
+      }
+      header h1 {
+        font-size: 3rem;
+        margin-bottom: 0.5rem;
+      }
+      header p {
+        font-size: 1.2rem;
+        color: #ddd;
+      }
+      header img {
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        margin-bottom: 1rem;
+        object-fit: cover;
+        box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+      }
+      .cv-button {
+        margin-top: 1.5rem;
+        display: inline-block;
+        padding: 0.7rem 1.5rem;
+        background-color: #ffffff;
+        color: #2c5364;
+        border-radius: 5px;
+        font-weight: bold;
+        text-decoration: none;
+        transition: background-color 0.3s;
+      }
+      .cv-button:hover {
+        background-color: #e0e0e0;
+      }
+
+      #contact {
+        padding: 4rem 1rem;
+        max-width: 1000px;
+        margin: auto auto 4rem auto;
+        opacity: 0;
+        transform: translateX(-100px);
+        animation: slideIn 1s ease forwards;
+        text-align: center;
+      }
+
+      #contact h2 {
+        font-size: 2rem;
+        color: #222;
+        margin-bottom: 1.5rem;
+        border-left: 5px solid #2c5364;
+        padding-left: 1rem;
+        display: inline-block;
+        text-align: left;
+      }
+
+      .contact-info p {
+        font-size: 1.1rem;
+        margin: 0.7rem 0;
+      }
+
+      .contact-info a {
+        color: #2c5364;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .contact-info a:hover {
+        text-decoration: underline;
+      }
+      .content-row {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+        flex-direction: row-reverse;
+      }
+
+      .content-row img {
+        max-width: 50%;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      .content-row p {
+        flex: 1;
+        font-size: 1.1rem;
+        line-height: 1.6;
+      }
+
+      section {
+        padding: 4rem 1rem;
+        max-width: 1000px;
+        margin: auto;
+        opacity: 0;
+        transform: translateX(-100px);
+        animation: slideIn 1s ease forwards;
+        margin-bottom: 4rem;
+      }
+      h2 {
+        font-size: 2rem;
+        color: #222;
+        margin-bottom: 1rem;
+        border-left: 5px solid #2c5364;
+        padding-left: 1rem;
+      }
+      ul {
+        list-style: none;
+        line-height: 1.8;
+      }
+      .project {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        align-items: center;
+        margin-bottom: 3rem;
+      }
+      .project img {
+        width: 100%;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+      .project img:hover {
+        transform: scale(1.03);
+      }
+      .skills-logos {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+      .skill-box {
+        text-align: center;
+        width: 120px;
+      }
+      .skill-box img {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 0.5rem;
+      }
+      .hobbies-logos {
+        justify-content: center; /* center horizontally */
+      }
+
+      .hobbies-logos .skill-box img {
+        width: 50px;
+        height: 50px;
+      }
+
+      footer {
+        text-align: center;
+        padding: 2rem 1rem;
+        background: #2c5364;
+        color: white;
+      }
+      a {
+        color: #2c5364;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+      @keyframes slideIn {
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img src="your-profile.jpg" alt="Durjoy Majumder" />
+      <h1>Durjoy Majumder</h1>
+      <p>Data Analyst • ML Enthusiast • Developer</p>
+      <a href="Durjoy-CV.pdf" class="cv-button" download>Download CV</a>
+    </header>
+
+    <section>
+      <h2>About Me</h2>
+      <div class="content-row">
+        <img src="mf-avatar.svg" alt="About Me" />
+        <p>
+          I am a passionate final year CSE student from Bangladesh, working on
+          AI, data analysis, and full stack projects. I enjoy solving real-world
+          problems and love learning new technologies.
+        </p>
+      </div>
+    </section>
+    <section>
+      <h2>Education</h2>
+      <div class="content-row">
+        <img src="2023-05-07.webp" alt="Education" />
+        <ul>
+          <li>
+            <strong>BSc in Computer Science & Engineering</strong><br />Green
+            University of Bangladesh<br />2020 - 2025 (Expected)
+          </li>
+        </ul>
+        <img src="2023-05-07.webp" alt="Education" />
+        <ul>
+          <li>
+            <strong>BSc in Computer Science & Engineering</strong><br />Green
+            University of Bangladesh<br />2020 - 2025 (Expected)
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <h2>Hobbies</h2>
+      <div class="skills-logos hobbies-logos">
+        <div class="skill-box">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png"
+            alt="Tech"
+          />
+          <div>Exploring Tech</div>
+        </div>
+        <div class="skill-box">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/616/616408.png"
+            alt="Football"
+          />
+          <div>Football</div>
+        </div>
+        <div class="skill-box">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/2965/2965567.png"
+            alt="Gaming"
+          />
+          <div>Gaming</div>
+        </div>
+        <div class="skill-box">
+          <img
+            src="https://cdn-icons-png.flaticon.com/512/727/727245.png"
+            alt="Music"
+          />
+          <div>Music</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Projects</h2>
+      <div class="project">
+        <img
+          src="https://via.placeholder.com/400x250?text=Project+1"
+          alt="Project 1"
+        />
+        <div>
+          <h3>Bus Booking System</h3>
+          <p>
+            A daily return bus booking platform with real-time slot graphs and
+            location filter. Built using PHP, MySQL, and Chart.js.
+          </p>
+        </div>
+      </div>
+      <div class="project">
+        <img
+          src="https://via.placeholder.com/400x250?text=Project+2"
+          alt="Project 2"
+        />
+        <div>
+          <h3>Lung Cancer Classification</h3>
+          <p>
+            ML project using CNN, ResNet, and EfficientNet on histopathological
+            images. Focused on classifying lung cancer subtypes.
+          </p>
+        </div>
+      </div>
+      <div class="project">
+        <img
+          src="https://via.placeholder.com/400x250?text=Project+3"
+          alt="Project 3"
+        />
+        <div>
+          <h3>Lost & Found System</h3>
+          <p>
+            Web platform for reporting and tracking lost items, integrated with
+            admin remarks and image uploads.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="skills">
+      <h2>Skills</h2>
+      <img
+        src="https://via.placeholder.com/600x250?text=Skills"
+        class="section-image"
+        alt="Skills"
+      />
+      <div class="skills-logos">
+        <div class="skill-box">
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
+            alt="Python"
+          />
+          <div>Python</div>
+        </div>
+        <div class="skill-box">
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg"
+            alt="Pandas"
+          />
+          <div>Pandas</div>
+        </div>
+        <div class="skill-box">
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg"
+            alt="NumPy"
+          />
+          <div>NumPy</div>
+        </div>
+        <div class="skill-box">
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
+            alt="MySQL"
+          />
+          <div>MySQL</div>
+        </div>
+        <div class="skill-box">
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg"
+            alt="SQL"
+          />
+          <div>SQL</div>
+        </div>
+        <div class="skill-box">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/c/c8/Microsoft_Power_BI_Logo.svg"
+            alt="Power BI"
+          />
+          <div>Power BI</div>
+        </div>
+        <div class="skill-box">
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"
+            alt="TensorFlow"
+          />
+          <div>TensorFlow</div>
+        </div>
+        <div class="skill-box">
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
+            alt="HTML"
+          />
+          <div>HTML</div>
+        </div>
+        <div class="skill-box">
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
+            alt="CSS"
+          />
+          <div>CSS</div>
+        </div>
+        <div class="skill-box">
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
+            alt="JavaScript"
+          />
+          <div>JavaScript</div>
+        </div>
+        <div class="skill-box">
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg"
+            alt="PHP"
+          />
+          <div>PHP</div>
+        </div>
+        <div class="skill-box">
+          <img
+            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg"
+            alt="Flutter"
+          />
+          <div>Flutter</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact Me</h2>
+      <div class="contact-info">
+        <p>
+          <strong>Email:</strong>
+          <a href="mailto:your.email@example.com">your.email@example.com</a>
+        </p>
+        <p><strong>Phone:</strong> +880 1234 567890</p>
+        <p><strong>Location:</strong> Dhaka, Bangladesh</p>
+        <p>
+          <strong>GitHub:</strong>
+          <a href="https://github.com/yourusername" target="_blank"
+            >github.com/yourusername</a
+          >
+        </p>
+        <p>
+          <strong>LinkedIn:</strong>
+          <a href="https://linkedin.com/in/yourusername" target="_blank"
+            >linkedin.com/in/yourusername</a
+          >
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 Durjoy Majumder. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
