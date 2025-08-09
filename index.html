@@ -1,303 +1,958 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Durjoy Majumder — Portfolio</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Durjoy Majumder | Modern Portfolio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-      :root{
-        --bg: #f4f7fb;
-        --card: rgba(255,255,255,0.7);
-        --text: #0f1724;
-        --muted: #475569;
-        --accent1: #2c5364; /* teal */
-        --accent2: #7b61ff; /* purple */
-        --glass: rgba(255,255,255,0.6);
-        --glass-border: rgba(255,255,255,0.6);
-        --shadow: 0 10px 30px rgba(15,23,36,0.12);
-        --radius: 14px;
-      }
-      .dark{
-        --bg: linear-gradient(180deg,#071426 0%, #071a2a 100%);
-        --card: rgba(10,20,30,0.5);
-        --text: #e6eef8;
-        --muted: #9fb3c8;
-        --accent1: #4fd1c5;
-        --accent2: #9b8cff;
-        --glass: rgba(255,255,255,0.04);
-        --glass-border: rgba(255,255,255,0.06);
-        --shadow: 0 20px 40px rgba(2,6,23,0.6);
-      }
+        :root {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --accent-primary: #3b82f6;
+            --accent-secondary: #8b5cf6;
+            --accent-tertiary: #06b6d4;
+            --glass-bg: rgba(255, 255, 255, 0.25);
+            --glass-border: rgba(255, 255, 255, 0.18);
+            --shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            --shadow-hover: 0 15px 35px rgba(31, 38, 135, 0.25);
+            --blur: blur(8px);
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --border-radius: 20px;
+        }
 
-      *{box-sizing:border-box;margin:0;padding:0}
-      html,body{height:100%}
-      body{
-        font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
-        background: var(--bg);
-        color: var(--text);
-        -webkit-font-smoothing:antialiased;
-        -moz-osx-font-smoothing:grayscale;
-        line-height:1.5;
-        transition: background 450ms ease, color 300ms ease;
-        padding-bottom:64px;
-      }
+        [data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-secondary: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --glass-bg: rgba(15, 23, 42, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.3);
+            --card-bg: rgba(30, 41, 59, 0.6);
+            --gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        }
 
-      /* animated soft blobs background */
-      .bg-blobs{
-        position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;
-      }
-      .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.7;mix-blend-mode:screen;transform:translateZ(0);animation:blob 12s infinite ease-in-out}
-      .b1{width:520px;height:520px;left:-8%;top:-8%;background:linear-gradient(135deg,var(--accent1),var(--accent2));animation-duration:18s}
-      .b2{width:420px;height:420px;right:-6%;bottom:-6%;background:linear-gradient(135deg,#ffd6a5,#ff7ab6);animation-duration:20s}
-      @keyframes blob{0%{transform:translateY(0) scale(1)}50%{transform:translateY(40px) scale(1.08)}100%{transform:translateY(0) scale(1)}}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-      /* Container */
-      .container{max-width:1100px;margin:40px auto;padding:28px}
+        html {
+            scroll-behavior: smooth;
+        }
 
-      /* header card */
-      header.hero{display:flex;gap:28px;align-items:center;padding:28px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.25));box-shadow:var(--shadow);backdrop-filter: blur(8px);border:1px solid var(--glass-border);transition:transform 350ms ease, box-shadow 200ms}
-      .dark header.hero{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02))}
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: all 0.3s ease;
+        }
 
-      .avatar-wrap{flex:0 0 140px;display:flex;justify-content:center}
-      .avatar{width:140px;height:140px;border-radius:18px;overflow:hidden;display:block;background:linear-gradient(135deg,var(--accent1),var(--accent2));box-shadow:0 8px 30px rgba(20,20,50,0.2);transform-style:preserve-3d;transition:transform 200ms ease}
-      .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+        }
 
-      .hero-content{flex:1;padding:6px}
-      .hero-content h1{font-size:clamp(1.6rem,3.5vw,2.4rem);letter-spacing:-0.5px}
-      .hero-content p{color:var(--muted);margin-top:6px}
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--gradient);
+            animation: float 6s ease-in-out infinite;
+        }
 
-      .cta-row{display:flex;gap:12px;align-items:center;margin-top:14px}
-      .btn{background:var(--accent1);color:white;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:600;box-shadow:0 8px 18px rgba(44,83,100,0.14);transition:transform 220ms ease, box-shadow 220ms}
-      .btn:hover{transform:translateY(-4px);box-shadow:0 18px 30px rgba(44,83,100,0.2)}
-      .ghost{background:transparent;border:1px solid var(--glass-border);color:var(--text);padding:10px 14px;border-radius:10px}
+        .shape-1 { width: 300px; height: 300px; top: 10%; left: 10%; animation-delay: 0s; }
+        .shape-2 { width: 200px; height: 200px; top: 60%; right: 10%; animation-delay: -2s; }
+        .shape-3 { width: 150px; height: 150px; bottom: 20%; left: 50%; animation-delay: -4s; }
 
-      /* theme toggle */
-      .top-right{position:fixed;right:20px;top:20px;z-index:40}
-      .theme-toggle{background:var(--card);border-radius:999px;display:inline-flex;align-items:center;gap:8px;padding:8px;border:1px solid var(--glass-border);box-shadow:var(--shadow);cursor:pointer}
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
 
-      /* about */
-      .about{display:grid;grid-template-columns:1fr 360px;gap:26px;margin-top:26px}
-      .card{background:var(--card);padding:18px;border-radius:14px;border:1px solid var(--glass-border);box-shadow:var(--shadow);transition:transform 220ms ease}
-      .card h2{margin-bottom:8px}
-      .about .bio{color:var(--muted);text-align:justify}
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 30px;
+            right: 30px;
+            z-index: 1000;
+            background: var(--glass-bg);
+            backdrop-filter: var(--blur);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 12px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
 
-      /* projects grid */
-      .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:22px}
-      .project-card{background:linear-gradient(180deg, rgba(255,255,255,0.45), rgba(255,255,255,0.18));border-radius:12px;padding:14px;border:1px solid var(--glass-border);transform-style:preserve-3d;transition:transform 300ms cubic-bezier(.2,.9,.2,1);will-change:transform}
-      .project-card img{width:100%;height:160px;object-fit:cover;border-radius:8px}
-      .project-card h3{margin:10px 0 6px}
-      .project-card p{color:var(--muted);font-size:0.95rem}
+        .theme-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
 
-      /* skills */
-      .skills-grid{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}
-      .skill{background:transparent;padding:8px 12px;border-radius:999px;border:1px dashed var(--glass-border);color:var(--muted);font-weight:600}
+        .theme-icon {
+            width: 20px;
+            height: 20px;
+            fill: var(--text-primary);
+            transition: all 0.3s ease;
+        }
 
-      /* contact */
-      .contact{display:flex;gap:18px;align-items:center;margin-top:18px}
-      .contact a{color:var(--accent1);font-weight:700}
+        /* Header */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: var(--gradient);
+            position: relative;
+            overflow: hidden;
+        }
 
-      footer{margin-top:30px;text-align:center;color:var(--muted)}
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
 
-      /* responsive */
-      @media (max-width:900px){
-        .about{grid-template-columns:1fr}
-        header.hero{flex-direction:row;gap:16px}
-      }
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            max-width: 800px;
+        }
 
-      /* 3d/tilt helper (reduced motion respects) */
-      @media (prefers-reduced-motion: reduce){
-        .avatar,.project-card,header.hero{transition:none!important;animation:none!important}
-      }
+        .hero-avatar {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            overflow: hidden;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            position: relative;
+            transition: all 0.5s ease;
+            cursor: pointer;
+        }
 
-      /* small utilities */
-      .muted{color:var(--muted)}
-      .flex{display:flex;gap:12px;align-items:center}
+        .hero-avatar:hover {
+            transform: scale(1.1) rotateY(5deg);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            animation: slideUp 1s ease 0.3s forwards;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: slideUp 1s ease 0.6s forwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: slideUp 1s ease 0.9s forwards;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-primary:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Glass Cards */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: var(--blur);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .glass-card:hover::before {
+            left: 100%;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        /* Education */
+        .education-timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .education-timeline::before {
+            content: '';
+            position: absolute;
+            left: 1rem;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: var(--gradient);
+        }
+
+        .education-item {
+            position: relative;
+            margin-bottom: 3rem;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            backdrop-filter: var(--blur);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .education-item::before {
+            content: '';
+            position: absolute;
+            left: -2.5rem;
+            top: 2rem;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--gradient);
+            border: 4px solid var(--bg-primary);
+        }
+
+        .education-item:hover {
+            transform: translateX(10px);
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .skill-item {
+            background: var(--glass-bg);
+            backdrop-filter: var(--blur);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 2rem 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skill-item:hover {
+            transform: translateY(-10px) rotateY(5deg);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .skill-item img {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover img {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            background: var(--glass-bg);
+            backdrop-filter: var(--blur);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.5s ease;
+            position: relative;
+        }
+
+        .project-card:nth-child(even) {
+            direction: rtl;
+        }
+
+        .project-card:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .project-card:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .project-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.1);
+        }
+
+        .project-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .project-content h3 a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .project-content h3 a:hover {
+            color: var(--accent-primary);
+        }
+
+        /* Hobbies */
+        .hobbies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .hobby-item {
+            background: var(--glass-bg);
+            backdrop-filter: var(--blur);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .hobby-item:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .hobby-item img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .hobby-item:hover img {
+            transform: rotate(10deg) scale(1.1);
+        }
+
+        /* Contact */
+        .contact-card {
+            background: var(--glass-bg);
+            backdrop-filter: var(--blur);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .contact-icon:hover {
+            transform: translateY(-5px) rotate(10deg);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .contact-icon img {
+            width: 30px;
+            height: 30px;
+            filter: brightness(0) invert(1);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--bg-secondary);
+            color: var(--text-muted);
+            border-top: 1px solid var(--glass-border);
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .project-card {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card:nth-child(even) {
+                direction: ltr;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+                gap: 1rem;
+            }
+
+            .section {
+                padding: 4rem 1rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
     </style>
-  </head>
-  <body>
-
-    <div class="bg-blobs" aria-hidden="true">
-      <div class="blob b1"></div>
-      <div class="blob b2"></div>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
     </div>
 
-    <div class="top-right">
-      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-        <svg id="iconLight" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4M12 7a5 5 0 100 10 5 5 0 000-10z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span id="themeLabel" style="font-weight:700">Light</span>
-      </button>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" onclick="toggleTheme()">
+        <svg class="theme-icon" id="theme-icon" viewBox="0 0 24 24">
+            <path d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364l-1.414 1.414M6.05 17.95l-1.414 1.414m12.728 0l-1.414-1.414M6.05 6.05L4.636 7.464M12 7a5 5 0 100 10 5 5 0 000-10z"/>
+        </svg>
+        <span id="theme-text">Light</span>
     </div>
 
-    <main class="container">
-      <header class="hero card" id="hero">
-        <div class="avatar-wrap">
-          <div class="avatar" id="avatar">
-            <img src="1703064250382.jpg" alt="Durjoy Majumder" />
-          </div>
-        </div>
+    <!-- Hero Section -->
+    <section class="hero">
         <div class="hero-content">
-          <h1>Durjoy Majumder</h1>
-          <p class="muted">Data Analyst • ML Enthusiast • Developer</p>
-
-          <div class="cta-row">
-            <a class="btn" href="Durjoy-CV.pdf" download>Download CV</a>
-            <a class="ghost" href="#contact">Contact</a>
-            <a class="ghost" href="https://github.com/Code-with-Durjoy" target="_blank">GitHub</a>
-          </div>
-
-          <div style="margin-top:12px;color:var(--muted)">
-            <small>Turning data into insights • ML for healthcare • Web & dashboard builder</small>
-          </div>
-        </div>
-      </header>
-
-      <section class="about" aria-labelledby="aboutHeading">
-        <div class="card bio">
-          <h2 id="aboutHeading">About Me</h2>
-          <p style="margin-top:8px">I’m <strong>Durjoy Majumder</strong>, a Computer Science & Engineering graduate focused on data analytics, machine learning and building usable systems. I work with Python, NumPy, Pandas, scikit-learn and TensorFlow to build classification models and data pipelines. I also build dashboards in Power BI and responsive web apps with HTML, CSS and JavaScript.</p>
-
-          <p style="margin-top:12px" class="muted">Outside of work I enjoy learning about new technologies, walking in nature, listening to music and exploring real-world problems that benefit from AI.</p>
-
-          <div style="margin-top:14px">
-            <h3 style="margin-bottom:8px">Quick Facts</h3>
-            <div class="flex">
-              <div><strong>BSc CSE</strong><div class="muted">Green University (2020–2025)</div></div>
-              <div><strong>Location</strong><div class="muted">Bangladesh</div></div>
+            <div class="hero-avatar">
+                <img src="durjoy.png" alt="Durjoy Majumder">
             </div>
-          </div>
-
-          <div style="margin-top:14px">
-            <h3 style="margin-bottom:8px">Skills</h3>
-            <div class="skills-grid">
-              <span class="skill">Python</span><span class="skill">Pandas</span><span class="skill">NumPy</span><span class="skill">TensorFlow</span>
-              <span class="skill">SQL</span><span class="skill">Power BI</span><span class="skill">HTML/CSS</span><span class="skill">JavaScript</span>
+            <h1>Durjoy Majumder</h1>
+            <p class="hero-subtitle">Data Analyst • ML Enthusiast • Developer</p>
+            <div class="hero-buttons">
+                <a href="Durjoy-CV.pdf" class="btn btn-primary" download>
+                    📄 Download CV
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    📧 Get in Touch
+                </a>
             </div>
-          </div>
         </div>
+    </section>
 
-        <aside class="card" aria-label="Profile image and hobbies">
-          <img src="2023-05-07.webp" alt="Education" style="width:100%;border-radius:10px;margin-bottom:12px;object-fit:cover;height:220px">
-          <div style="display:flex;gap:10px;flex-wrap:wrap">
-            <div style="flex:1 1 120px">
-              <strong>Hobbies</strong>
-              <div class="muted" style="margin-top:6px">Football · Gaming · Music · Exploring tech</div>
+    <!-- About Section -->
+    <section class="section" id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="glass-card">
+            <div class="about-grid">
+                <div class="about-text">
+                    <p><strong>👨‍💻 Professional Background:</strong> I'm Durjoy Majumder, a Computer Science and Engineering graduate with a strong focus on data analytics, machine learning, and intelligent systems. Over the past few years, I've developed expertise in tools like Python, Pandas, NumPy, scikit-learn, MySQL, and TensorFlow. I've worked on real-world classification problems, built dashboards using Power BI, and developed responsive websites using HTML, CSS, JavaScript, and PHP. I'm passionate about turning raw data into meaningful insights and love building efficient, scalable solutions with modern tech.</p>
+                    
+                    <p><strong>🌱 Personal Side:</strong> Beyond the screen, I'm an explorer at heart. I enjoy reading about emerging technologies, watching documentaries, and diving deep into how things work. I find joy in small things—sharing laughter with friends, walking alone in nature, or getting lost in music. I'm someone who values curiosity, honesty, and human connection. While I take my career seriously, I also believe that being kind, calm, and emotionally aware is just as important as being technically skilled.</p>
+                </div>
+                <div class="about-image">
+                    <img src="1703064250382.jpg" alt="Durjoy Majumder">
+                </div>
             </div>
-            <div style="flex:1 1 120px">
-              <strong>Contact</strong>
-              <div class="muted" style="margin-top:6px"><a href="mailto:durjoymajumder070@gmail.com">durjoymajumder070@gmail.com</a><br><a href="tel:+8801831748496">+8801831748496</a></div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section" id="education">
+        <h2 class="section-title">Education</h2>
+        <div class="education-timeline">
+            <div class="education-item">
+                <h3>BSc in Computer Science & Engineering</h3>
+                <h4>Green University of Bangladesh</h4>
+                <p>2020 - 2025</p>
+                <img src="2023-05-07.webp" alt="Education" style="width: 100%; border-radius: 15px; margin-top: 1rem; max-height: 200px; object-fit: cover;">
             </div>
-          </div>
-        </aside>
-      </section>
-
-      <section aria-labelledby="projectsHeading" style="margin-top:24px">
-        <h2 id="projectsHeading">Projects</h2>
-        <div class="projects">
-
-          <article class="project-card" data-tilt>
-            <img src="lung.jpg" alt="Lung Cancer Classification">
-            <h3><a href="https://github.com/Code-with-Durjoy/Lung-Cancer-Classification" target="_blank">Lung Cancer Classification</a></h3>
-            <p class="muted">Applied EfficientNet, ResNet and ViT to histopathology images. Managed class imbalance with weighted losses and augmentation. Built evaluation and visualization dashboards.</p>
-          </article>
-
-          <article class="project-card" data-tilt>
-            <img src="news.png" alt="News summarization">
-            <h3><a href="https://github.com/Code-with-Durjoy/News_Article_Summarization" target="_blank">News Article Summarization</a></h3>
-            <p class="muted">Fine-tuned transformer models to generate concise summaries while preserving context. Built a lightweight UI for user input.</p>
-          </article>
-
-          <article class="project-card" data-tilt>
-            <img src="gub.jpg" alt="Bus service">
-            <h3><a href="https://github.com/Code-with-Durjoy/University_Bus_Service_and_Management_full_Stack_Project" target="_blank">Bus Service & Management</a></h3>
-            <p class="muted">Full-stack student bus booking platform with slot-based booking, admin dashboard and lost & found feature.</p>
-          </article>
-
+            <div class="education-item">
+                <h3>Higher Secondary School</h3>
+                <h4>Noakhali Science And Commerce College</h4>
+                <p>Science | 2017 - 2018</p>
+            </div>
         </div>
-      </section>
+    </section>
 
-      <section id="contact" style="margin-top:28px">
-        <h2>Contact</h2>
-        <div class="card contact">
-          <div>
-            <p><strong>Email</strong><br><a href="mailto:durjoymajumder070@gmail.com">durjoymajumder070@gmail.com</a></p>
-            <p><strong>Phone</strong><br><a href="tel:+8801831748496">+8801831748496</a></p>
-            <p style="margin-top:10px"><a class="btn" href="https://github.com/Code-with-Durjoy" target="_blank">View GitHub</a></p>
-          </div>
-          <div style="min-width:180px;text-align:center">
-            <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="linkedin" width="56">
-            <p class="muted" style="margin-top:8px">Connect on LinkedIn</p>
-          </div>
+    <!-- Skills Section -->
+    <section class="section" id="skills">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-item">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+                <h4>Python</h4>
+            </div>
+            <div class="skill-item">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas">
+                <h4>Pandas</h4>
+            </div>
+            <div class="skill-item">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="NumPy">
+                <h4>NumPy</h4>
+            </div>
+            <div class="skill-item">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL">
+                <h4>MySQL</h4>
+            </div>
+            <div class="skill-item">
+                <img src="powerbi.png" alt="Power BI">
+                <h4>Power BI</h4>
+            </div>
+            <div class="skill-item">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow">
+                <h4>TensorFlow</h4>
+            </div>
+            <div class="skill-item">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML">
+                <h4>HTML</h4>
+            </div>
+            <div class="skill-item">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS">
+                <h4>CSS</h4>
+            </div>
+            <div class="skill-item">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+                <h4>JavaScript</h4>
+            </div>
+            <div class="skill-item">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP">
+                <h4>PHP</h4>
+            </div>
+            <div class="skill-item">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter">
+                <h4>Flutter</h4>
+            </div>
+            <div class="skill-item">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg" alt="SQL">
+                <h4>SQL</h4>
+            </div>
         </div>
-      </section>
+    </section>
 
-      <footer>
-        <small>&copy; 2025 Durjoy Majumder • Built with care</small>
-      </footer>
-    </main>
+    <!-- Hobbies Section -->
+    <section class="section" id="hobbies">
+        <h2 class="section-title">Hobbies</h2>
+        <div class="hobbies-grid">
+            <div class="hobby-item">
+                <img src="tech.png" alt="Tech">
+                <h4>Exploring Tech</h4>
+            </div>
+            <div class="hobby-item">
+                <img src="football.avif" alt="Football">
+                <h4>Football</h4>
+            </div>
+            <div class="hobby-item">
+                <img src="game.webp" alt="Gaming">
+                <h4>Gaming</h4>
+            </div>
+            <div class="hobby-item">
+                <img src="https://cdn-icons-png.flaticon.com/512/727/727245.png" alt="Music">
+                <h4>Music</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" id="projects">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="lung.jpg" alt="Lung Cancer Classification">
+                </div>
+                <div class="project-content">
+                    <h3><a href="https://github.com/Code-with-Durjoy/Lung-Cancer-Classification">🔬 Lung Cancer Classification</a></h3>
+                    <p>This deep learning project aims to accurately classify lung cancer histopathology images into multiple categories. I used a dataset of labeled medical images and applied models like EfficientNet, ResNet, and Vision Transformer (ViT) for performance comparison. EfficientNet yielded the best results (~75% accuracy). Techniques like class weighting and data augmentation were used to mitigate class imbalance.</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="news.png" alt="News Summarization">
+                </div>
+                <div class="project-content">
+                    <h3><a href="https://github.com/Code-with-Durjoy/News_Article_Summarization">📰 News Article Summarization</a></h3>
+                    <p>This NLP project focuses on generating concise summaries of lengthy news articles using advanced natural language processing techniques. I used Python with Hugging Face's Transformers and the T5 model to fine-tune a summarization pipeline. The goal was to reduce reading time while preserving key information and context.</p>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="gub.jpg" alt="Bus Service Management">
+                </div>
+                <div class="project-content">
+                    <h3><a href="https://github.com/Code-with-Durjoy/University_Bus_Service_and_Management_full_Stack_Project">🚌 Bus Service & Management</a></h3>
+                    <p>This project is a full-featured daily return bus booking platform built for students. The system includes features like slot-based booking (1 PM and 3 PM), location selection, real-time tracking of bookings and available buses, and automatic daily resets. Built with PHP, MySQL, and JavaScript.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-card">
+            <h3>Let's Connect!</h3>
+            <p>Feel free to reach out for collaborations, opportunities, or just to say hello!</p>
+            
+            <div style="margin: 2rem 0;">
+                <p><strong>📧 Email:</strong> <a href="mailto:durjoymajumder070@gmail.com" style="color: var(--accent-primary);">durjoymajumder070@gmail.com</a></p>
+                <p><strong>📱 Phone:</strong> <a href="tel:+8801831748496" style="color: var(--accent-primary);">+8801831748496</a></p>
+            </div>
+
+            <div class="contact-icons">
+                <a href="https://github.com/Code-with-Durjoy" class="contact-icon" target="_blank" title="GitHub">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub">
+                </a>
+                <a href="https://www.linkedin.com/in/durjoy-ai07" class="contact-icon" target="_blank" title="LinkedIn">
+                    <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Durjoy Majumder. All rights reserved. Built with ❤️ and modern web technologies.</p>
+    </footer>
 
     <script>
-      // Theme toggle with localStorage
-      const root = document.documentElement;
-      const body = document.body;
-      const toggle = document.getElementById('themeToggle');
-      const label = document.getElementById('themeLabel');
-      const iconLight = document.getElementById('iconLight');
-
-      function applyTheme(theme){
-        if(theme === 'dark'){
-          body.classList.add('dark');
-          label.textContent = 'Dark';
-        } else {
-          body.classList.remove('dark');
-          label.textContent = 'Light';
+        // Theme Toggle Functionality
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            const themeText = document.getElementById('theme-text');
+            
+            if (body.hasAttribute('data-theme')) {
+                body.removeAttribute('data-theme');
+                themeIcon.innerHTML = '<path d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364l-1.414 1.414M6.05 17.95l-1.414 1.414m12.728 0l-1.414-1.414M6.05 6.05L4.636 7.464M12 7a5 5 0 100 10 5 5 0 000-10z"/>';
+                themeText.textContent = 'Light';
+                localStorage.setItem('theme', 'light');
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.innerHTML = '<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>';
+                themeText.textContent = 'Dark';
+                localStorage.setItem('theme', 'dark');
+            }
         }
-      }
-      const saved = localStorage.getItem('durjoy_theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      applyTheme(saved);
 
-      toggle.addEventListener('click', ()=>{
-        const isDark = body.classList.toggle('dark');
-        localStorage.setItem('durjoy_theme', isDark? 'dark':'light');
-        applyTheme(isDark? 'dark':'light');
-      });
+        // Load saved theme
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
+                document.body.setAttribute('data-theme', 'dark');
+                document.getElementById('theme-icon').innerHTML = '<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>';
+                document.getElementById('theme-text').textContent = 'Dark';
+            }
+        }
 
-      // 3D tilt effect for elements with [data-tilt]
-      const supportsMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches === false;
-      if(supportsMotion){
-        document.querySelectorAll('[data-tilt]').forEach(el => {
-          el.style.transformStyle = 'preserve-3d';
-          el.addEventListener('mousemove', (e)=>{
-            const rect = el.getBoundingClientRect();
-            const x = e.clientX - rect.left; // x position within the element.
-            const y = e.clientY - rect.top;  // y position within the element.
-            const px = (x / rect.width) - 0.5;
-            const py = (y / rect.height) - 0.5;
-            const rotX = (py * 12).toFixed(2);
-            const rotY = (px * -12).toFixed(2);
-            el.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(6px)`;
-          });
-          el.addEventListener('mouseleave', ()=>{ el.style.transform = 'none'; });
+        // Intersection Observer for animations
+        function setupScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.section').forEach(section => {
+                observer.observe(section);
+            });
+        }
+
+        // Smooth scrolling for internal links
+        function setupSmoothScrolling() {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+        }
+
+        // 3D tilt effect for cards
+        function setup3DEffects() {
+            const cards = document.querySelectorAll('.glass-card, .project-card, .skill-item, .hobby-item');
+            
+            cards.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                    
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    
+                    const rotateX = ((y - centerY) / centerY) * -10;
+                    const rotateY = ((x - centerX) / centerX) * 10;
+                    
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+                });
+            });
+        }
+
+        // Parallax effect for floating shapes
+        function setupParallax() {
+            window.addEventListener('scroll', () => {
+                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                
+                const scrolled = window.pageYOffset;
+                const shapes = document.querySelectorAll('.floating-shape');
+                
+                shapes.forEach((shape, index) => {
+                    const rate = scrolled * -0.5 * (index + 1);
+                    shape.style.transform = `translateY(${rate}px)`;
+                });
+            });
+        }
+
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            loadTheme();
+            setupScrollAnimations();
+            setupSmoothScrolling();
+            setup3DEffects();
+            setupParallax();
+            
+            // Add some delay to hero animations
+            setTimeout(() => {
+                document.querySelector('.hero-content').style.opacity = '1';
+            }, 500);
         });
 
-        // subtle parallax for avatar
-        const avatar = document.getElementById('avatar');
-        if(avatar){
-          document.getElementById('hero').addEventListener('mousemove', (e)=>{
-            const rect = e.currentTarget.getBoundingClientRect();
-            const cx = (e.clientX - rect.left) - rect.width/2;
-            const cy = (e.clientY - rect.top) - rect.height/2;
-            avatar.style.transform = `translateZ(18px) rotateY(${cx/40}deg) rotateX(${ -cy/60 }deg)`;
-          });
-          document.getElementById('hero').addEventListener('mouseleave', ()=>{ avatar.style.transform = 'none'; });
-        }
-      }
-
-      // small accessibility: focus outlines for keyboard
-      document.addEventListener('keydown', (e)=>{ if(e.key === 'Tab') document.body.classList.add('show-focus'); });
-
+        // Handle resize for responsive adjustments
+        window.addEventListener('resize', () => {
+            // Reset any transforms on resize
+            const cards = document.querySelectorAll('.glass-card, .project-card, .skill-item, .hobby-item');
+            cards.forEach(card => {
+                card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+            });
+        });
     </script>
-  </body>
+</body>
 </html>
