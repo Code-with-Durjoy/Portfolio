@@ -1,538 +1,465 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Durjoy Majumder | Portfolio</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Durjoy Majumder — Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
+      :root{
+        --bg: #f4f7fb;
+        --card: rgba(255,255,255,0.7);
+        --text: #0f1724;
+        --muted: #475569;
+        --accent1: #2c5364; /* teal */
+        --accent2: #7b61ff; /* purple */
+        --glass: rgba(255,255,255,0.6);
+        --glass-border: rgba(255,255,255,0.6);
+        --shadow: 0 10px 30px rgba(15,23,36,0.12);
+        --radius: 14px;
       }
-      body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #f4f4f4;
-        color: #333;
-        transition: background-color 0.3s, color 0.3s;
-        text-align: justify;
-      }
-      header {
-        background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-        color: white;
-        padding: 4rem 1rem;
-        text-align: center;
-        transition: background 0.5s ease;
-      }
-      header h1 {
-        font-size: 3rem;
-        margin-bottom: 0.5rem;
-      }
-      header p {
-        font-size: 1.2rem;
-        color: #ddd;
-      }
-      header img {
-        width: 140px;
-        height: 140px;
-        border-radius: 50%;
-        margin-bottom: 1rem;
-        object-fit: cover;
-        box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
-      }
-      .cv-button {
-        margin-top: 1.5rem;
-        display: inline-block;
-        padding: 0.7rem 1.5rem;
-        background-color: #ffffff;
-        color: #2c5364;
-        border-radius: 5px;
-        font-weight: bold;
-        text-decoration: none;
-        transition: background-color 0.3s;
-      }
-      .cv-button:hover {
-        background-color: #e0e0e0;
-      }
-      .about-box {
-  display: flex;
-  align-items: flex-start;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.about-text {
-  flex: 1 1 300px;
-}
-
-.about-image {
-  flex: 1 1 250px;
-  max-width: 300px;
-}
-
-.about-image img {
-  width: 100%;
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  object-fit: cover;
-}
-
-/* Responsive fix for small screens */
-@media (max-width: 768px) {
-  .about-box {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-  }
-
-  .about-text, .about-image {
-    flex: 1 1 100%;
-  }
-}
-
-
-      #contact {
-        padding: 4rem 1rem;
-        max-width: 1000px;
-        margin: auto auto 4rem auto;
-        opacity: 0;
-        transform: translateX(-100px);
-        animation: slideIn 1s ease forwards;
-        text-align: center;
+      .dark{
+        --bg: linear-gradient(180deg,#071426 0%, #071a2a 100%);
+        --card: rgba(10,20,30,0.5);
+        --text: #e6eef8;
+        --muted: #9fb3c8;
+        --accent1: #4fd1c5;
+        --accent2: #9b8cff;
+        --glass: rgba(255,255,255,0.04);
+        --glass-border: rgba(255,255,255,0.06);
+        --shadow: 0 20px 40px rgba(2,6,23,0.6);
       }
 
-      #contact h2 {
-        font-size: 2rem;
-        color: #222;
-        margin-bottom: 1.5rem;
-        border-left: 5px solid #2c5364;
-        padding-left: 1rem;
-        display: inline-block;
-        text-align: left;
+      *{box-sizing:border-box;margin:0;padding:0}
+      html,body{height:100%}
+      body{
+        font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+        background: var(--bg);
+        color: var(--text);
+        -webkit-font-smoothing:antialiased;
+        -moz-osx-font-smoothing:grayscale;
+        line-height:1.5;
+        transition: background 450ms ease, color 300ms ease;
+        padding-bottom:64px;
       }
 
-      .contact-info p {
-        font-size: 1.1rem;
-        margin: 0.7rem 0;
+      /* animated soft blobs background */
+      .bg-blobs{
+        position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;
+      }
+      .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:0.7;mix-blend-mode:screen;transform:translateZ(0);animation:blob 12s infinite ease-in-out}
+      .b1{width:520px;height:520px;left:-8%;top:-8%;background:linear-gradient(135deg,var(--accent1),var(--accent2));animation-duration:18s}
+      .b2{width:420px;height:420px;right:-6%;bottom:-6%;background:linear-gradient(135deg,#ffd6a5,#ff7ab6);animation-duration:20s}
+      @keyframes blob{0%{transform:translateY(0) scale(1)}50%{transform:translateY(40px) scale(1.08)}100%{transform:translateY(0) scale(1)}}
+
+      /* Container */
+      .container{max-width:1100px;margin:40px auto;padding:28px}
+
+      /* header card */
+      header.hero{display:flex;gap:28px;align-items:center;padding:28px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.25));box-shadow:var(--shadow);backdrop-filter: blur(8px);border:1px solid var(--glass-border);transition:transform 350ms ease, box-shadow 200ms}
+      .dark header.hero{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02))}
+
+      .avatar-wrap{flex:0 0 140px;display:flex;justify-content:center}
+      .avatar{width:140px;height:140px;border-radius:18px;overflow:hidden;display:block;background:linear-gradient(135deg,var(--accent1),var(--accent2));box-shadow:0 8px 30px rgba(20,20,50,0.2);transform-style:preserve-3d;transition:transform 200ms ease}
+      .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+
+      .hero-content{flex:1;padding:6px}
+      .hero-content h1{font-size:clamp(1.6rem,3.5vw,2.4rem);letter-spacing:-0.5px}
+      .hero-content p{color:var(--muted);margin-top:6px}
+
+      .cta-row{display:flex;gap:12px;align-items:center;margin-top:14px}
+      .btn{background:var(--accent1);color:white;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:600;box-shadow:0 8px 18px rgba(44,83,100,0.14);transition:transform 220ms ease, box-shadow 220ms}
+      .btn:hover{transform:translateY(-4px);box-shadow:0 18px 30px rgba(44,83,100,0.2)}
+      .ghost{background:transparent;border:1px solid var(--glass-border);color:var(--text);padding:10px 14px;border-radius:10px}
+
+      /* theme toggle */
+      .top-right{position:fixed;right:20px;top:20px;z-index:40}
+      .theme-toggle{background:var(--card);border-radius:999px;display:inline-flex;align-items:center;gap:8px;padding:8px;border:1px solid var(--glass-border);box-shadow:var(--shadow);cursor:pointer}
+
+      /* about */
+      .about{display:grid;grid-template-columns:1fr 360px;gap:26px;margin-top:26px}
+      .card{background:var(--card);padding:18px;border-radius:14px;border:1px solid var(--glass-border);box-shadow:var(--shadow);transition:transform 220ms ease;backdrop-filter: blur(8px)}
+
+      .card h2{margin-bottom:8px}
+      .about .bio{color:var(--muted);text-align:justify}
+
+      /* Education section */
+      .education-item{
+        background: linear-gradient(180deg, rgba(255,255,255,0.4), rgba(255,255,255,0.15));
+        border: 1px solid var(--glass-border);
+        border-radius: 12px;
+        padding: 16px;
+        margin: 8px 0;
+        backdrop-filter: blur(6px);
+        box-shadow: 0 4px 16px rgba(15,23,36,0.08);
+      }
+      .dark .education-item{
+        background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
       }
 
-      .contact-info a {
-        color: #2c5364;
-        text-decoration: none;
+      /* projects grid */
+      .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:22px}
+      .project-card{background:linear-gradient(180deg, rgba(255,255,255,0.45), rgba(255,255,255,0.18));border-radius:12px;padding:14px;border:1px solid var(--glass-border);transform-style:preserve-3d;transition:transform 300ms cubic-bezier(.2,.9,.2,1);will-change:transform;backdrop-filter: blur(6px)}
+      .dark .project-card{background:linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.015))}
+      .project-card img{width:100%;height:160px;object-fit:cover;border-radius:8px}
+      .project-card h3{margin:10px 0 6px}
+      .project-card p{color:var(--muted);font-size:0.95rem}
+
+      /* skills */
+      .skills-grid{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px}
+      .skill{
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+        backdrop-filter: blur(4px);
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--glass-border);
+        color: var(--text);
         font-weight: 600;
+        box-shadow: 0 2px 8px rgba(15,23,36,0.05);
+        transition: transform 200ms ease, box-shadow 200ms ease;
       }
-
-      .contact-info a:hover {
-        text-decoration: underline;
+      .skill:hover{
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(15,23,36,0.1);
       }
-      .contact-section {
-        background: linear-gradient(to right, #e0f7fa, #f1f8e9);
-        padding: 4rem 1rem;
+      .dark .skill{
+        background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
+        color: var(--text);
       }
-
-      .contact-card {
-        background: #ffffff;
-        padding: 2rem;
-        border-radius: 15px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        max-width: 600px;
-        margin: auto;
-      }
-
-      .contact-card p {
-        font-size: 1.1rem;
-        margin-bottom: 0.8rem;
-      }
-
-      .contact-links a {
-        color: #2c5364;
-        text-decoration: none;
-        font-weight: bold;
-      }
-
-      .contact-links a:hover {
-        text-decoration: underline;
-      }
-
-      .contact-icons {
+      .skill-icon{
+        width: 18px;
+        height: 18px;
+        border-radius: 3px;
+        background: var(--glass);
+        padding: 2px;
         display: flex;
+        align-items: center;
         justify-content: center;
-        gap: 2rem;
-        flex-wrap: wrap;
-        margin-top: 1rem;
       }
-
-      .contact-icons a img {
-        width: 50px;
-        height: 50px;
-        transition: transform 0.3s ease, filter 0.3s ease;
-      }
-
-      .contact-icons a:hover img {
-        transform: scale(1.2);
-        filter: brightness(1.3);
-      }
-
-      .content-row {
-        display: flex;
-        align-items: center;
-        gap: 2rem;
-        flex-wrap: wrap;
-        flex-direction: row-reverse;
-      }
-
-      .content-row img {
-        max-width: 50%;
-        height: auto;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      }
-
-      .content-row p {
-        flex: 1;
-        font-size: 1.1rem;
-        line-height: 1.6;
-      }
-
-      section {
-        padding: 4rem 1rem;
-        max-width: 1000px;
-        margin: auto;
-        opacity: 0;
-        transform: translateX(-100px);
-        animation: slideIn 1s ease forwards;
-        margin-bottom: 4rem;
-      }
-      h2 {
-        font-size: 2rem;
-        color: #222;
-        margin-bottom: 1rem;
-        border-left: 5px solid #2c5364;
-        padding-left: 1rem;
-      }
-      ul {
-        list-style: none;
-        line-height: 1.8;
-      }
-      .project {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2rem;
-        align-items: center;
-        margin-bottom: 3rem;
-      }
-      .project img {
+      .skill-icon img{
         width: 100%;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
+        height: 100%;
+        object-fit: contain;
       }
-      .project img:hover {
-        transform: scale(1.03);
-      }
-      .skills-logos {
+
+      /* hobbies */
+      .hobbies-grid{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+      .hobby{
         display: flex;
-        flex-wrap: wrap;
+        align-items: center;
+        gap: 6px;
+        background: linear-gradient(180deg, rgba(255,255,255,0.25), rgba(255,255,255,0.08));
+        backdrop-filter: blur(4px);
+        padding: 6px 10px;
+        border-radius: 20px;
+        border: 1px solid var(--glass-border);
+        color: var(--muted);
+        font-weight: 500;
+        font-size: 0.9rem;
+        box-shadow: 0 2px 6px rgba(15,23,36,0.04);
+      }
+      .dark .hobby{
+        background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+      }
+      .hobby-icon{
+        width: 16px;
+        height: 16px;
+        border-radius: 2px;
+        background: rgba(255,255,255,0.1);
+        padding: 1px;
+        display: flex;
+        align-items: center;
         justify-content: center;
-        gap: 2rem;
-        margin-top: 2rem;
       }
-      .skill-box {
-        text-align: center;
-        width: 120px;
-      }
-      .skill-box img {
-        width: 60px;
-        height: 60px;
-        margin-bottom: 0.5rem;
-      }
-      .hobbies-logos {
-        justify-content: center; /* center horizontally */
+      .hobby-icon img{
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
       }
 
-      .hobbies-logos .skill-box img {
-        width: 50px;
-        height: 50px;
+      /* contact */
+      .contact{display:flex;gap:18px;align-items:center;margin-top:18px}
+      .contact a{color:var(--accent1);font-weight:700}
+
+      footer{margin-top:30px;text-align:center;color:var(--muted)}
+
+      /* responsive */
+      @media (max-width:900px){
+        .about{grid-template-columns:1fr}
+        header.hero{flex-direction:row;gap:16px}
       }
 
-      footer {
-        text-align: center;
-        padding: 2rem 1rem;
-        background: #2c5364;
-        color: white;
+      /* 3d/tilt helper (reduced motion respects) */
+      @media (prefers-reduced-motion: reduce){
+        .avatar,.project-card,header.hero{transition:none!important;animation:none!important}
       }
-      a {
-        color: #2c5364;
-        text-decoration: none;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
-      @keyframes slideIn {
-        to {
-          opacity: 1;
-          transform: translateX(0);
-        }
-      }
+
+      /* small utilities */
+      .muted{color:var(--muted)}
+      .flex{display:flex;gap:12px;align-items:center}
     </style>
   </head>
   <body>
-    <header>
-      <img src="durjoy.png" alt="Durjoy Majumder" />
-      <h1>Durjoy Majumder</h1>
-      <p>Data Analyst • ML Enthusiast • Developer</p>
-      <a href="Durjoy-CV.pdf" class="cv-button" download>Download CV</a>
-    </header>
 
-    
-    <section class="about-section">
-  <h2>About Me</h2>
-  <div class="about-box">
-    <div class="about-text">
-      
-      <p>👨‍💻 Professional Background:</b> I’m Durjoy Majumder, a Computer Science
-          and Engineering graduate with a strong focus on data analytics,
-          machine learning, and intelligent systems. Over the past few years,
-          I’ve developed expertise in tools like Python, Pandas, NumPy,
-          scikit-learn, MySQL, and TensorFlow. I’ve worked on real-world
-          classification problems, built dashboards using Power BI, and
-          developed responsive websites using HTML, CSS, JavaScript, and PHP.
-          I’m passionate about turning raw data into meaningful insights and
-          love building efficient, scalable solutions with modern tech. <br>🌱
-          <b>Personal Side:</b> Beyond the screen, I’m an explorer at heart. I enjoy
-          reading about emerging technologies, watching documentaries, and
-          diving deep into how things work. I find joy in small things—sharing
-          laughter with friends, walking alone in nature, or getting lost in
-          music. I'm someone who values curiosity, honesty, and human
-          connection. While I take my career seriously, I also believe that
-          being kind, calm, and emotionally aware is just as important as being
-          technically skilled.</p>
+    <div class="bg-blobs" aria-hidden="true">
+      <div class="blob b1"></div>
+      <div class="blob b2"></div>
     </div>
-    <div class="about-image">
-      <img src="1703064250382.jpg" alt="Durjoy Majumder"style='height: 300px;'>
+
+    <div class="top-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+        <svg id="iconLight" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4M12 7a5 5 0 100 10 5 5 0 000-10z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span id="themeLabel" style="font-weight:700">Light</span>
+      </button>
     </div>
-  </div>
-</section>
 
+    <main class="container">
+      <header class="hero card" id="hero">
+        <div class="avatar-wrap">
+          <div class="avatar" id="avatar">
+            <img src="1703064250382.jpg" alt="Durjoy Majumder" />
+          </div>
+        </div>
+        <div class="hero-content">
+          <h1>Durjoy Majumder</h1>
+          <p class="muted">Data Analyst • ML Enthusiast • Developer</p>
 
+          <div class="cta-row">
+            <a class="btn" href="Durjoy-CV.pdf" download>Download CV</a>
+            <a class="ghost" href="#contact">Contact</a>
+            <a class="ghost" href="https://github.com/Code-with-Durjoy" target="_blank">GitHub</a>
+          </div>
 
-    <section>
-      <h2>Education</h2>
-      <div class="content-row">
-        <img src="2023-05-07.webp" alt="Education" />
-        <ul>
-          <li>
-            <strong>BSc in Computer Science & Engineering</strong><br />Green
-            University of Bangladesh<br />2020 - 2025
-          </li>
+          <div style="margin-top:12px;color:var(--muted)">
+            <small>Turning data into insights • ML for healthcare • Web & dashboard builder</small>
+          </div>
+        </div>
+      </header>
 
-          <li>
-            <strong>Higher Secondary School</strong><br />Noakhali Science And
-            Commerce College <br />Science<br />2017 - 2018
-          </li>
-        </ul>
-      </div>
-    </section>
+      <section class="about" aria-labelledby="aboutHeading">
+        <div class="card bio">
+          <h2 id="aboutHeading">About Me</h2>
+          <p style="margin-top:8px">I'm <strong>Durjoy Majumder</strong>, a Computer Science & Engineering graduate focused on data analytics, machine learning and building usable systems. I work with Python, NumPy, Pandas, scikit-learn and TensorFlow to build classification models and data pipelines. I also build dashboards in Power BI and responsive web apps with HTML, CSS and JavaScript.</p>
 
-    <section>
-      <h2>Hobbies</h2>
-      <div class="skills-logos hobbies-logos">
-        <div class="skill-box">
-          <img src="tech.png" alt="Tech" />
-          <div>Exploring Tech</div>
-        </div>
-        <div class="skill-box">
-          <img src="football.avif" alt="Football" />
-          <div>Football</div>
-        </div>
-        <div class="skill-box">
-          <img src="game.webp" alt="Gaming" />
-          <div>Gaming</div>
-        </div>
-        <div class="skill-box">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/727/727245.png"
-            alt="Music"
-          />
-          <div>Music</div>
-        </div>
-      </div>
-    </section>
+          <p style="margin-top:12px" class="muted">Outside of work I enjoy learning about new technologies, walking in nature, listening to music and exploring real-world problems that benefit from AI.</p>
 
-    <section>
-      <h2>Projects</h2>
+          <div style="margin-top:16px">
+            <h3 style="margin-bottom:10px">Education</h3>
+            <div class="education-item">
+             <img src=""/>
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 4px;">
+                <strong style="color: var(--text);">Bachelor of Science in Computer Science & Engineering</strong>
+                <span style="color: var(--muted); font-size: 0.9rem;">2020 – 2025</span>
+              </div>
+              <div style="color: var(--accent1); font-weight: 600; margin-bottom: 2px;">Green University of Bangladesh</div>
+              <div style="color: var(--muted); font-size: 0.9rem;">Dhaka, Bangladesh</div>
+            </div>
+          </div>
 
-      <div class="project">
-        <img src="lung.jpg" alt="Project 2" />
-        <div>
-          <a href="https://github.com/Code-with-Durjoy/Lung-Cancer-Classification"
-            ><h3>Lung Cancer Classification</h3></a>
-          <p>This deep learning project aims to accurately classify lung cancer histopathology images into multiple categories. I used a dataset of labeled medical images and applied models like EfficientNet, ResNet, and Vision Transformer (ViT) for performance comparison. EfficientNet yielded the best results (~75% accuracy). Techniques like class weighting and data augmentation were used to mitigate class imbalance. I preprocessed the data using NumPy and scikit-learn, and implemented the models using TensorFlow and Keras. This project demonstrates my ability to apply AI in healthcare, tune hyperparameters, and evaluate deep learning architectures.
-          </p>
-        </div>
-      </div>
-
-      <div class="project">
-        <img src="news.png" alt="Project 1" />
-        <div>
-          <a href="https://github.com/Code-with-Durjoy/News_Article_Summarization"><h3>📰News Article Summarization</h3></a>
-          <p>
-            This NLP project focuses on generating concise summaries of lengthy news articles using advanced natural language processing techniques. I used Python with Hugging Face's Transformers and the T5 model to fine-tune a summarization pipeline. The goal was to reduce reading time while preserving key information and context. The system handles a variety of news topics, from politics to tech, and produces human-readable summaries. I also added preprocessing steps (tokenization, cleaning) and built a simple UI for users to input articles. This project highlights my grasp of modern NLP, deep learning, and usability-driven design.
-          </p>
-        </div>
-      </div>
-
-      <div class="project">
-        <img src="gub.jpg" alt="Project 1" />
-        <div>
-          <a href="https://github.com/Code-with-Durjoy/University_Bus_Service_and_Management_full_Stack_Project"><h3>🚌Bus Service & Management (Full Stack)</h3></a>
-          <p>
-            This project is a full-featured daily return bus booking platform built for students. The system includes features like slot-based booking (1 PM and 3 PM), location selection (Shewrapara, Shymoly, Agargaon, Mahakhali, Kuril, Araihazar), real-time tracking of bookings and available buses, and automatic daily resets. An admin dashboard provides visual insights via bar charts, and students can cancel bookings using their IDs. I also added a "Lost and Found" page and a feedback system, allowing students to report missing items and submit feedback. It was built with PHP, MySQL, and JavaScript, and emphasizes data-driven UX with clear visual feedback.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="skills">
-      <h2>Skills</h2>
-      <img
-        src="675-6758294_skill-icon-png.png"
-        class="section-image"
-        alt="Skills"
-        style="height: 60px;"
-      />
-      <div class="skills-logos">
-        <div class="skill-box">
-          <img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
-            alt="Python"
-          />
-          <div>Python</div>
-        </div>
-        <div class="skill-box">
-          <img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg"
-            alt="Pandas"
-          />
-          <div>Pandas</div>
-        </div>
-        <div class="skill-box">
-          <img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg"
-            alt="NumPy"
-          />
-          <div>NumPy</div>
-        </div>
-        <div class="skill-box">
-          <img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"
-            alt="MySQL"
-          />
-          <div>MySQL</div>
-        </div>
-        <div class="skill-box">
-          <img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg"
-            alt="SQL"
-          />
-          <div>SQL</div>
-        </div>
-        <div class="skill-box">
-          <img src="powerbi.png" alt="Power BI" />
-          <div>Power BI</div>
-        </div>
-        <div class="skill-box">
-          <img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"
-            alt="TensorFlow"
-          />
-          <div>TensorFlow</div>
-        </div>
-        <div class="skill-box">
-          <img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg"
-            alt="HTML"
-          />
-          <div>HTML</div>
-        </div>
-        <div class="skill-box">
-          <img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg"
-            alt="CSS"
-          />
-          <div>CSS</div>
-        </div>
-        <div class="skill-box">
-          <img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg"
-            alt="JavaScript"
-          />
-          <div>JavaScript</div>
-        </div>
-        <div class="skill-box">
-          <img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg"
-            alt="PHP"
-          />
-          <div>PHP</div>
-        </div>
-        <div class="skill-box">
-          <img
-            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg"
-            alt="Flutter"
-          />
-          <div>Flutter(Biginner)</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="contact-section">
-      <h2>Contact</h2>
-      <div class="contact-card">
-        <p>You can reach me via:</p>
-
-        <div class="contact-links">
-          <p>
-            <strong>Email:</strong>
-            <a href="mailto:durjoymajumder070@gmail.com"
-              >durjoymajumder070@gmail.com</a
-            >
-          </p>
-          <p>
-            <strong>Phone:</strong>
-            <a href="tel:+8801XXXXXXXXX">+8801831748496</a>
-          </p>
+          <div style="margin-top:16px">
+            <h3 style="margin-bottom:8px">Skills</h3>
+            <div class="skills-grid">
+              <span class="skill">
+                <div class="skill-icon">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" />
+                </div>
+                Python
+              </span>
+              <span class="skill">
+                <div class="skill-icon">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas" />
+                </div>
+                Pandas
+              </span>
+              <span class="skill">
+                <div class="skill-icon">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="NumPy" />
+                </div>
+                NumPy
+              </span>
+              <span class="skill">
+                <div class="skill-icon">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" />
+                </div>
+                TensorFlow
+              </span>
+              <span class="skill">
+                <div class="skill-icon">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL" />
+                </div>
+                SQL
+              </span>
+              <span class="skill">
+                <div class="skill-icon">
+                  <img src="https://img.icons8.com/color/48/power-bi.png" alt="Power BI" />
+                </div>
+                Power BI
+              </span>
+              <span class="skill">
+                <div class="skill-icon">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" />
+                </div>
+                HTML/CSS
+              </span>
+              <span class="skill">
+                <div class="skill-icon">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
+                </div>
+                JavaScript
+              </span>
+            </div>
+          </div>
         </div>
 
-        <p style="margin: 1.5rem 0 0.5rem">Or connect with me:</p>
-        <div class="contact-icons">
-          <a
-            href="https://github.com/Code-with-Durjoy"
-            target="_blank"
-            title="GitHub"
-          >
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/733/733553.png"
-              alt="GitHub"
-            />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/durjoy-ai07"
-            target="_blank"
-            title="LinkedIn"
-          >
-            <img
-              src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
-              alt="LinkedIn"
-            />
-          </a>
-        </div>
-      </div>
-    </section>
+        <aside class="card" aria-label="Profile image and hobbies">
+          <div style="display:flex;gap:16px;flex-wrap:wrap">
+            <div style="flex:1 1 140px">
+              <strong>Hobbies</strong>
+              <div class="hobbies-grid">
+                <div class="hobby">
+                  <div class="hobby-icon">
+                    <img src="https://img.icons8.com/color/48/football.png" alt="Football" />
+                  </div>
+                  Football
+                </div>
+                <div class="hobby">
+                  <div class="hobby-icon">
+                    <img src="https://img.icons8.com/color/48/controller.png" alt="Gaming" />
+                  </div>
+                  Gaming
+                </div>
+                <div class="hobby">
+                  <div class="hobby-icon">
+                    <img src="https://img.icons8.com/color/48/music.png" alt="Music" />
+                  </div>
+                  Music
+                </div>
+                <div class="hobby">
+                  <div class="hobby-icon">
+                    <img src="https://img.icons8.com/color/48/search.png" alt="Tech" />
+                  </div>
+                  Tech
+                </div>
+              </div>
+            </div>
+            <div style="flex:1 1 140px">
+              <strong>Contact</strong>
+              <div class="muted" style="margin-top:6px"><a href="mailto:durjoymajumder070@gmail.com">durjoymajumder070@gmail.com</a><br><a href="tel:+8801831748496">+8801831748496</a></div>
+            </div>
+          </div>
+        </aside>
+      </section>
 
-    <footer>
-      <p>&copy; 2025 Durjoy Majumder. All rights reserved.</p>
-    </footer>
+      <section aria-labelledby="projectsHeading" style="margin-top:24px">
+        <h2 id="projectsHeading">Projects</h2>
+        <div class="projects">
+
+          <article class="project-card" data-tilt>
+            <img src="lung.jpg" alt="Lung Cancer Classification">
+            <h3><a href="https://github.com/Code-with-Durjoy/Lung-Cancer-Classification" target="_blank">Lung Cancer Classification</a></h3>
+            <p class="muted">Applied EfficientNet, ResNet and ViT to histopathology images. Managed class imbalance with weighted losses and augmentation. Built evaluation and visualization dashboards.</p>
+          </article>
+
+          <article class="project-card" data-tilt>
+            <img src="news.png" alt="News summarization">
+            <h3><a href="https://github.com/Code-with-Durjoy/News_Article_Summarization" target="_blank">News Article Summarization</a></h3>
+            <p class="muted">Fine-tuned transformer models to generate concise summaries while preserving context. Built a lightweight UI for user input.</p>
+          </article>
+
+          <article class="project-card" data-tilt>
+            <img src="gub.jpg" alt="Bus service">
+            <h3><a href="https://github.com/Code-with-Durjoy/University_Bus_Service_and_Management_full_Stack_Project" target="_blank">Bus Service & Management</a></h3>
+            <p class="muted">Full-stack student bus booking platform with slot-based booking, admin dashboard and lost & found feature.</p>
+          </article>
+
+        </div>
+      </section>
+
+      <section id="contact" style="margin-top:28px">
+        <h2>Contact</h2>
+        <div class="card contact">
+          <div>
+            <p><strong>Email</strong><br><a href="mailto:durjoymajumder070@gmail.com">durjoymajumder070@gmail.com</a></p>
+            <p><strong>Phone</strong><br><a href="tel:+8801831748496">+8801831748496</a></p>
+            <p style="margin-top:10px"><a class="btn" href="https://github.com/Code-with-Durjoy" target="_blank">View GitHub</a></p>
+          </div>
+          <div style="min-width:180px;text-align:center">
+            <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="linkedin" width="56">
+            <p class="muted" style="margin-top:8px">Connect on LinkedIn</p>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <small>&copy; 2025 Durjoy Majumder • Built with care</small>
+      </footer>
+    </main>
+
+    <script>
+      // Theme toggle with localStorage
+      const root = document.documentElement;
+      const body = document.body;
+      const toggle = document.getElementById('themeToggle');
+      const label = document.getElementById('themeLabel');
+      const iconLight = document.getElementById('iconLight');
+
+      function applyTheme(theme){
+        if(theme === 'dark'){
+          body.classList.add('dark');
+          label.textContent = 'Dark';
+        } else {
+          body.classList.remove('dark');
+          label.textContent = 'Light';
+        }
+      }
+      const saved = localStorage.getItem('durjoy_theme') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      applyTheme(saved);
+
+      toggle.addEventListener('click', ()=>{
+        const isDark = body.classList.toggle('dark');
+        localStorage.setItem('durjoy_theme', isDark? 'dark':'light');
+        applyTheme(isDark? 'dark':'light');
+      });
+
+      // 3D tilt effect for elements with [data-tilt]
+      const supportsMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches === false;
+      if(supportsMotion){
+        document.querySelectorAll('[data-tilt]').forEach(el => {
+          el.style.transformStyle = 'preserve-3d';
+          el.addEventListener('mousemove', (e)=>{
+            const rect = el.getBoundingClientRect();
+            const x = e.clientX - rect.left; // x position within the element.
+            const y = e.clientY - rect.top;  // y position within the element.
+            const px = (x / rect.width) - 0.5;
+            const py = (y / rect.height) - 0.5;
+            const rotX = (py * 12).toFixed(2);
+            const rotY = (px * -12).toFixed(2);
+            el.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(6px)`;
+          });
+          el.addEventListener('mouseleave', ()=>{ el.style.transform = 'none'; });
+        });
+
+        // subtle parallax for avatar
+        const avatar = document.getElementById('avatar');
+        if(avatar){
+          document.getElementById('hero').addEventListener('mousemove', (e)=>{
+            const rect = e.currentTarget.getBoundingClientRect();
+            const cx = (e.clientX - rect.left) - rect.width/2;
+            const cy = (e.clientY - rect.top) - rect.height/2;
+            avatar.style.transform = `translateZ(18px) rotateY(${cx/40}deg) rotateX(${ -cy/60 }deg)`;
+          });
+          document.getElementById('hero').addEventListener('mouseleave', ()=>{ avatar.style.transform = 'none'; });
+        }
+      }
+
+      // small accessibility: focus outlines for keyboard
+      document.addEventListener('keydown', (e)=>{ if(e.key === 'Tab') document.body.classList.add('show-focus'); });
+
+    </script>
   </body>
 </html>
